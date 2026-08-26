@@ -1,5 +1,11 @@
-#ifndef COMMON_H
-#define COMMON_H
+#pragma once
+#if defined(__CUDACC__)
+  #ifndef __STDC_VERSION__
+    #define __STDC_VERSION__ 201112L
+  #endif
+  #define __HAVE_FLOAT64X 0
+  #define __HAVE_FLOAT32X 0
+#endif
 
 #include <iostream>
 #include <cstdint>
@@ -17,5 +23,3 @@
             exit(EXIT_FAILURE); \
         } \
     } while (0)
-
-#endif // COMMON_H
