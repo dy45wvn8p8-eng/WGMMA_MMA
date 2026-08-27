@@ -13,7 +13,7 @@ int main() {
     std::cout << "Device Name: " << prop.name << std::endl;
     std::cout << "Compute Capability: " << prop.major << "." << prop.minor << std::endl;
 
-    constexpr int N = 1024;
+    constexpr int N = 1024 * 1024 * 16;
     float *d_out = nullptr;
     half *d_in = nullptr;
 
@@ -22,8 +22,6 @@ int main() {
 
     launch_hybrid_kernel(d_out, d_in, N);
     CUDA_CHECK(cudaDeviceSynchronize());
-
-    std::cout << "=== Pipeline Test Complete ===" << std::endl;
 
     CUDA_CHECK(cudaFree(d_out));
     CUDA_CHECK(cudaFree(d_in));
